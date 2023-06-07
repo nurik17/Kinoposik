@@ -13,4 +13,21 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="text_Skillcinema">
+        <item name="android:textColor">#272727</item>
+        <item name="android:text">Skillcinema</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/graphic</item>
+    </style>
+
+    <style name="text_skip">
+        <item name="android:textColor">#B5B5C9</item>
+        <item name="android:text">Пропустить</item>
+        <item name="android:textSize">15sp</item>
+
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/graphic</item>
+    </style>
 </resources>
