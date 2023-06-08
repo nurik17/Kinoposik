@@ -5,19 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kinopoisk.databinding.ParentItemBinding
+import com.example.kinopoisk.feature.home.data.ChildMovieItem
 import com.example.kinopoisk.feature.home.data.Movie
 import com.example.kinopoisk.feature.home.data.MovieList
 import kotlin.coroutines.coroutineContext
 
 class ParentAdapter: RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
 
-    var itemMovieList : List<MovieList> = ArrayList()
-
-
+    var itemMovieList : List<ChildMovieItem> = ArrayList()
 
     inner class ParentViewHolder(val binding: ParentItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(result : MovieList){
-
+        fun bind(result : ChildMovieItem){
             val childAdapter = ChildAdapter(result.items)
             binding.rvMovieChild.layoutManager = LinearLayoutManager(itemView.context,LinearLayoutManager.HORIZONTAL,false)
             binding.rvMovieChild.adapter = childAdapter
@@ -36,7 +34,12 @@ class ParentAdapter: RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
     }
 
     fun addData(list : List<Movie>){
-
+        val moviesByYear = list.groupBy { it.year.toString() }
+        itemMovieList =moviesByYear.map {
+            ChildMovieItem(
+                title = it.key,
+                items = it.value
+            )
+        }
     }
-
 }

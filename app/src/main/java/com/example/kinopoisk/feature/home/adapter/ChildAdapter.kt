@@ -13,9 +13,8 @@ import com.example.kinopoisk.feature.home.data.MovieList
 
 
 class ChildAdapter(var movie : List<Movie>): RecyclerView.Adapter<ChildAdapter.ChildViewHolder>(){
+
     private var movieList :List<Movie> = ArrayList()
-
-
 
     init {
         this.movieList = movie

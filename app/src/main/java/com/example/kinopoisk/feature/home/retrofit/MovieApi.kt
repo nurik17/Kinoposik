@@ -18,8 +18,6 @@ interface MovieApi {
 
     suspend fun movies(@Query("year") year:Int, @Query("month") month:String): MovieList
 
-
-
     companion object{
         const val BASE_URL = "https://kinopoiskapiunofficial.tech"
         private const val API_KEY = "9cbb66dc-4c6d-47c1-8489-ca7c09a7bef3"

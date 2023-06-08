@@ -19,8 +19,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
 
-    private lateinit var homeViewModel : HomeViewModel
-    private lateinit var adapter : ParentAdapter
+    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var adapter: ParentAdapter
 
     private val repository: MovieListRepository by lazy {
         MovieListRepository()
@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setUpViews()
         return binding.root
     }
@@ -47,11 +47,16 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         homeViewModel.movies.onEach {
+            adapter.addData(it)
         }.launchIn(lifecycleScope)
     }
-    private fun setUpViews(){
 
-        binding.rvMain.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+    private fun setUpViews() {
+        binding.rvMain.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
         adapter = ParentAdapter()
         binding.rvMain.adapter = adapter
     }
