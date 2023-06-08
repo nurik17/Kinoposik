@@ -1,15 +1,16 @@
 package com.example.kinopoisk.feature.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kinopoisk.databinding.FragmentHomeBinding
 import com.example.kinopoisk.feature.home.adapter.ParentAdapter
+import com.example.kinopoisk.feature.home.repository.MovieListRepository
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -18,8 +19,20 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
 
-    private val homeViewModel : HomeViewModel by viewModels()
+    private lateinit var homeViewModel : HomeViewModel
     private lateinit var adapter : ParentAdapter
+
+    private val repository: MovieListRepository by lazy {
+        MovieListRepository()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val factory = HomeViewModel.Factory(
+            repository = repository
+        )
+        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +47,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         homeViewModel.movies.onEach {
-        }
+        }.launchIn(lifecycleScope)
     }
     private fun setUpViews(){
 

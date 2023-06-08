@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.kinopoisk.feature.home.data.Movie
 import com.example.kinopoisk.feature.home.repository.MovieListRepository
@@ -29,6 +30,13 @@ class HomeViewModel(private val repository: MovieListRepository): ViewModel(){
                 onSuccess = { _movies.value},
                 onFailure = { Log.d("HomeViewModel", it.message ?: "")}
             )
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    class Factory(private val repository: MovieListRepository) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return HomeViewModel(repository) as T
         }
     }
 }
