@@ -41,5 +41,6 @@ class ParentAdapter: RecyclerView.Adapter<ParentAdapter.ParentViewHolder>() {
                 items = it.value
             )
         }
+        notifyDataSetChanged()
     }
 }
