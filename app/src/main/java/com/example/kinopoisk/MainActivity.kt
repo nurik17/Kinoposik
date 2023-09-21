@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavDestination
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kinopoisk.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.tabs.TabLayout.LabelVisibility
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,35 +24,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         val bottomNavView: BottomNavigationView = binding.btmNav
-
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main)
-        val navController = navHostFragment!!.findNavController()
+        bottomNavView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED //
 
         bottomNavView.setupWithNavController(navController)
-
-
-        /*   val appBarConfiguration = AppBarConfiguration(
-               setOf(
-                   R.id.navigation_home,
-                   R.id.navigation_favourite,
-                   R.id.navigation_shop,
-                   R.id.navigation_profile
-               )
-           )*/
-/*
-        bottomNavView.setupWithNavController(navController)
-
 
 
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.navigation_home || nd.id == R.id.navigation_favourite
-                ||nd.id == R.id.navigation_profile ||nd.id == R.id.navigation_shop) {
+            if (nd.id == R.id.homeFragment || nd.id == R.id.searchFragment
+                ||nd.id == R.id.profileFragment) {
                 bottomNavView.visibility = View.VISIBLE
             } else {
                 bottomNavView.visibility = View.INVISIBLE
             }
-        }*/
+        }
     }
 
     private fun setFullScreen() {
