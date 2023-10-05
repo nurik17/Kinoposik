@@ -66,5 +66,16 @@ dependencies {
     //GLIDE
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
+
     implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
+    //shimmer effect
+
+}
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        languageVersion = "1.9"
+    }
 }

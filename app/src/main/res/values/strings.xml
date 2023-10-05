@@ -6,4 +6,12 @@
     <string name="search">Search</string>
     <string name="profle">Profle</string>
 
+
+    <string name="premieres">Премьеры</string>
+    <string name="popular">Популярное</string>
+    <string name="top_250">Топ-250</string>
+    <string name="release">Релизы</string>
+
+    <string name="error_text">No internet connection</string>
+
 </resources>

@@ -39,6 +39,5 @@ class OnBoardingFragment : Fragment() {
             findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
         }
         TabLayoutMediator(binding.tab,binding.viewPager){ _,_-> }.attach()
-
     }
 }
