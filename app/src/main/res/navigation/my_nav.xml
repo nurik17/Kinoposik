@@ -13,12 +13,17 @@
         <action
             android:id="@+id/action_onBoardingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.kinopoisk.ui.home.presentation.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_fullMovieFragment"
+            app:destination="@id/fullMovieFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.kinopoisk.ui.profile.ProfileFragment"
@@ -29,4 +34,9 @@
         android:name="com.example.kinopoisk.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/fullMovieFragment"
+        android:name="com.example.kinopoisk.ui.home.fullMovie.FullMovieFragment"
+        android:label="fragment_full_movie"
+        tools:layout="@layout/fragment_full_movie" />
 </navigation>

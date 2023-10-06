@@ -5,8 +5,8 @@ import com.example.kinopoisk.entity.Movie
 
 class MovieListRepository(private val api: MovieApi) {
 
-    suspend fun getPremieres(month: String,year: String) : List<Movie>{
-        return api.getPremieres(month,year).items
+    suspend fun getPremieres(month: String,year: String,page: Int?) : List<Movie>{
+        return api.getPremieres(month,year,page).items
     }
 
     suspend fun getPopular100(page: Int?) : List<Movie>{

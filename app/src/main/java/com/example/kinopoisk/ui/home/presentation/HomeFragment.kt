@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
 
     private val verticalAdapter = VerticalAdapter(this)
     private lateinit var homeViewModel: HomeViewModel
+
     private val repository: MovieListRepository by lazy {
         MovieListRepository(RetrofitClient.api)
     }
@@ -76,10 +77,11 @@ class HomeFragment : Fragment() {
                 homeViewModel.state.collect {
                     when (it) {
                         State.Error -> {
-                            binding.errorText.text = R.string.error_text.toString()
+                            binding.errorText.text = "No internet connection"
                             binding.loaderImage.visibility = View.GONE
                             binding.progressCircular.visibility = View.GONE
                             bottomNavigationView.visibility = View.GONE
+                            binding.imageInternet.visibility = View.VISIBLE
                         }
 
                         State.Success -> {
@@ -88,6 +90,7 @@ class HomeFragment : Fragment() {
                             binding.progressCircular.visibility = View.GONE
                             binding.recyclerNewMovies.visibility = View.VISIBLE
                             bottomNavigationView.visibility = View.VISIBLE
+                            binding.imageInternet.visibility = View.INVISIBLE
                         }
 
                         State.Loading -> {
@@ -95,6 +98,7 @@ class HomeFragment : Fragment() {
                             binding.progressCircular.progress = View.VISIBLE
                             binding.recyclerNewMovies.visibility = View.GONE
                             bottomNavigationView.visibility = View.GONE
+                            binding.imageInternet.visibility = View.GONE
                         }
                     }
                 }

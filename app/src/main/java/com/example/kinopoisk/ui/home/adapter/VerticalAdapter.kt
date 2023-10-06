@@ -1,8 +1,10 @@
 package com.example.kinopoisk.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kinopoisk.R
 import com.example.kinopoisk.entity.Movie
@@ -14,6 +16,7 @@ class VerticalAdapter(private val fragment : HomeFragment) :
 
     private var movieList : List<List<Movie>> = emptyList()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setMovies(movies : List<List<Movie>>){
         movieList  = movies
         notifyDataSetChanged()
@@ -28,7 +31,9 @@ class VerticalAdapter(private val fragment : HomeFragment) :
     }
 
     override fun onBindViewHolder(holder: VerticalViewHolder, position: Int) {
-        val horizontalAdapter = MovieListAdapter { _ -> } // onItemClick navigation to next screen
+        val horizontalAdapter = MovieListAdapter { movie ->
+
+        }
         holder.binding.rvMovieChild.adapter = horizontalAdapter
         horizontalAdapter.submitList(movieList[position].take(10))
 
@@ -39,15 +44,35 @@ class VerticalAdapter(private val fragment : HomeFragment) :
             when(movieList[position]){
                 movieList[0] ->{
                     holder.binding.tvPremier.text = holder.binding.root.context.getString(R.string.premieres)
+                    holder.binding.tvAll.setOnClickListener {
+                        argsList.add("premieres")
+                        bundle.putStringArrayList("1",argsList)
+                        fragment.findNavController().navigate(R.id.fullMovieFragment,bundle)
+                    }
                 }
                 movieList[1] ->{
                     holder.binding.tvPremier.text = holder.binding.root.context.getString(R.string.popular)
+                    holder.binding.tvAll.setOnClickListener {
+                        argsList.add("top100")
+                        bundle.putStringArrayList("1",argsList)
+                        fragment.findNavController().navigate(R.id.fullMovieFragment,bundle)
+                    }
                 }
                 movieList[2] ->{
                     holder.binding.tvPremier.text = holder.binding.root.context.getString(R.string.top_250)
+                    holder.binding.tvAll.setOnClickListener {
+                        argsList.add("top250")
+                        bundle.putStringArrayList("1",argsList)
+                        fragment.findNavController().navigate(R.id.fullMovieFragment,bundle)
+                    }
                 }
                 movieList[3]->{
                     holder.binding.tvPremier.text = holder.binding.root.context.getString(R.string.release)
+                    holder.binding.tvAll.setOnClickListener {
+                        argsList.add("release")
+                        bundle.putStringArrayList("1",argsList)
+                        fragment.findNavController().navigate(R.id.fullMovieFragment,bundle)
+                    }
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.example.kinopoisk.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ class MovieListAdapter(
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DiffUtilCallback.MovieListViewHolder, position: Int) {
         val item = getItem(position)
         holder.binding.apply {
@@ -37,7 +39,13 @@ class MovieListAdapter(
             }else{
                 rating.visibility = View.GONE
             }
-            movieName.text = item?.nameRu ?: ""
+
+            if (item.nameRu?.length!! >= 25) {
+                movieName.text = item?.nameRu.substring(0,15) + "..."
+            } else {
+                movieName.text = item?.nameRu
+            }
+
             movieGenre.text = getFirstGenre(item.genres ?: emptyList())
             Glide.with(imageView)
                 .load(item.posterUrlPreview)

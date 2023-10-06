@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.kinopoisk.databinding.ActivityMainBinding
+import com.example.kinopoisk.utils.IOnBackPressed
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.google.android.material.navigation.NavigationBarView
@@ -33,12 +34,18 @@ class MainActivity : AppCompatActivity() {
 
 
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.homeFragment || nd.id == R.id.searchFragment
-                ||nd.id == R.id.profileFragment) {
-                bottomNavView.visibility = View.VISIBLE
-            } else {
+            if (nd.id == R.id.onBoardingFragment) {
                 bottomNavView.visibility = View.INVISIBLE
+            } else {
+                bottomNavView.visibility = View.VISIBLE
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+            super.onBackPressed()
         }
     }
 

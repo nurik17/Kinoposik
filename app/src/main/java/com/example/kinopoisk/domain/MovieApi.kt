@@ -15,7 +15,8 @@ interface MovieApi {
     @GET("/api/v2.2/films/premieres")
     suspend fun getPremieres(
         @Query("month") month:String,
-        @Query("year") year:String
+        @Query("year") year:String,
+        @Query("page") page: Int?
     ): MovieListDto
 
     @Headers("X-API-KEY: $API_KEY")
