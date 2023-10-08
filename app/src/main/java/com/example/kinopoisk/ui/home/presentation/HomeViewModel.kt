@@ -7,7 +7,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.kinopoisk.data.MovieListRepository
+import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.ui.home.fullMovie.paging.Popular100PagingSource
@@ -48,7 +48,7 @@ class HomeViewModel(private val repository: MovieListRepository) : ViewModel() {
             enablePlaceholders = false
         ),
         pagingSourceFactory = { Popular100PagingSource() }
-    ).flow.cachedIn(viewModelScope)
+    ).flow.cachedIn(viewModelScope)  // cachedIn state
 
     val top250Paged : Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(

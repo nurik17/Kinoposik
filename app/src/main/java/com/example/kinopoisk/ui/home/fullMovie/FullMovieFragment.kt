@@ -2,6 +2,7 @@ package com.example.kinopoisk.ui.home.fullMovie
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.kinopoisk.data.MovieListRepository
+import com.example.kinopoisk.R
+import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentFullMovieBinding
 import com.example.kinopoisk.domain.RetrofitClient
+import com.example.kinopoisk.entity.Movie
+import com.example.kinopoisk.entity.onItemClick
 import com.example.kinopoisk.ui.home.adapter.MovieListAdapter
 import com.example.kinopoisk.ui.home.presentation.HomeViewModel
-import com.example.kinopoisk.utils.IOnBackPressed
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -30,9 +32,12 @@ class FullMovieFragment : Fragment(){
 
     private lateinit var viewModel : HomeViewModel
 
-    private val adapter = MovieListAdapter{}
+    private val adapter = MovieListAdapter {movie ->
+        onItemClick(movie,this)
+    }
 
     private val pagedAdapter = MovieFullAdapter{movie ->
+        onItemClick(movie,this)
     }
     private val repository: MovieListRepository by lazy {
         MovieListRepository(RetrofitClient.api)
@@ -60,12 +65,19 @@ class FullMovieFragment : Fragment(){
         getTypeOfMovie()
         stateType()
 
-        binding.arrowBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        backButton()
+
 
     }
 
+
+    private fun backButton(){
+        binding.arrowBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private fun getTypeOfMovie(){
         val argsList = arguments?.getStringArrayList("1")
 

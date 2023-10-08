@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="50dp"
+    app:layoutDescription="@xml/fragment_movie_detail_scene"
+    tools:context=".ui.movieDetail.MovieDetailFragment">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/main_image"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:foreground="@drawable/tool_back_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/arrowBack"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name_english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/graphik_500"
+                android:text="Сила добра"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="@id/main_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/rating"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6.4"
+                app:layout_constraintEnd_toStartOf="@id/name_russian"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/flow1" />
+
+            <TextView
+                android:id="@+id/name_russian"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Китобой"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rating"
+                app:layout_constraintTop_toTopOf="@id/flow1" />
+
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:constraint_referenced_ids="rating,name_russian"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalStyle="packed"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_english" />
+
+
+            <TextView
+                android:id="@+id/year"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020"
+                app:layout_constraintEnd_toStartOf="@+id/genre"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/flow2" />
+
+            <TextView
+                android:id="@+id/genre"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="драма,приключение"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/year" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:constraint_referenced_ids="year,genre"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalStyle="packed"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flow1" />
+
+
+            <TextView
+                android:id="@+id/country"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Russian"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1ч 30мин"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/age"
+                style="@style/film_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16+"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:constraint_referenced_ids="country,time,age"
+                app:flow_horizontalGap="8dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalStyle="packed"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flow2" />
+
+
+            <ImageView
+                android:id="@+id/favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_favourite"
+                app:layout_constraintEnd_toStartOf="@id/save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/flow_icon" />
+
+            <ImageView
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_save"
+                app:layout_constraintStart_toEndOf="@id/favourite"
+                app:layout_constraintTop_toTopOf="@id/flow_icon" />
+
+            <ImageView
+                android:id="@+id/notSee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_notsee"
+                app:layout_constraintStart_toEndOf="@id/save"
+                app:layout_constraintTop_toTopOf="@id/flow_icon" />
+
+            <ImageView
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_share"
+                app:layout_constraintStart_toEndOf="@id/notSee"
+                app:layout_constraintTop_toTopOf="@id/flow_icon" />
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_more"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/share"
+                app:layout_constraintTop_toTopOf="@id/flow_icon" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow_icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:constraint_referenced_ids="favourite,save,notSee,share,more"
+                app:flow_horizontalGap="16dp"
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalStyle="packed"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flow3" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/graphik_700"
+                android:text="Чукотский парень влюбляется  в американскую вебкам-модель. Приз Венеции, Кристина Асмус  в роли девушки мечты"
+                android:textColor="#272727"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/main_image" />
+
+
+            <TextView
+                android:id="@+id/short_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/graphik_400"
+                android:text="Все меняется в жизни юного чукотского охотника Лёшки  с появлением в поселке интернета. Он влюбляется — впервые и сильно —  в молчаливую девушку..."
+                android:textColor="#272727"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <TextView
+                android:id="@+id/title_cast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="В фильме снимались"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/short_description"
+                android:fontFamily="@font/graphik_600"
+                android:textSize="20sp"
+                android:textColor="#272727"/>
+
+            <TextView
+                android:id="@+id/cast_item_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="27 >"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/short_description"
+                android:fontFamily="@font/graphik_500"
+                android:textSize="18sp"
+                android:textColor="#3D3BFF"/>
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_cast"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_cast"
+                android:layout_margin="16dp"
+                app:spanCount="4"
+                tools:listitem="@layout/item_cast"/>
+
+
+
+            <TextView
+                android:id="@+id/title_staff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Над фильмом работали"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_cast"
+                android:fontFamily="@font/graphik_600"
+                android:textSize="20sp"
+                android:textColor="#272727"/>
+
+            <TextView
+                android:id="@+id/staff_item_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="19 >"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_cast"
+                android:fontFamily="@font/graphik_500"
+                android:textSize="18sp"
+                android:textColor="#3D3BFF"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_staff"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_staff"
+                android:layout_margin="16dp"
+                app:spanCount="2"
+                tools:listitem="@layout/item_cast"/>
+
+
+            <TextView
+                android:id="@+id/gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Галерея"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_staff"
+                android:fontFamily="@font/graphik_600"
+                android:textSize="20sp"
+                android:textColor="#272727"/>
+
+            <TextView
+                android:id="@+id/gallery_item_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="17 >"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_staff"
+                android:fontFamily="@font/graphik_500"
+                android:textSize="18sp"
+                android:textColor="#3D3BFF"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gallery"
+                android:layout_margin="16dp"
+                tools:listitem="@layout/item_cast"/>
+
+
+            <TextView
+                android:id="@+id/simpleFilm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Похожие фильмы"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_gallery"
+                android:fontFamily="@font/graphik_600"
+                android:textSize="20sp"
+                android:textColor="#272727"/>
+
+            <TextView
+                android:id="@+id/simpleFilm_item_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="17 >"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_gallery"
+                android:fontFamily="@font/graphik_500"
+                android:textSize="18sp"
+                android:textColor="#3D3BFF"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_simpleFilm"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/simpleFilm"
+                android:layout_margin="16dp"
+                tools:listitem="@layout/item_cast"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.kinopoisk.data
+package com.example.kinopoisk.domain
 
 import com.example.kinopoisk.domain.MovieApi
 import com.example.kinopoisk.entity.Movie

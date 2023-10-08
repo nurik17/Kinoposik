@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fullMovieFragment"
             app:destination="@id/fullMovieFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -38,5 +41,14 @@
         android:id="@+id/fullMovieFragment"
         android:name="com.example.kinopoisk.ui.home.fullMovie.FullMovieFragment"
         android:label="fragment_full_movie"
-        tools:layout="@layout/fragment_full_movie" />
+        tools:layout="@layout/fragment_full_movie" >
+        <action
+            android:id="@+id/action_fullMovieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.kinopoisk.ui.movieDetail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" />
 </navigation>

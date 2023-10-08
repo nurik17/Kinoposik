@@ -29,4 +29,10 @@
 
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="film_info">
+        <item name="android:textColor">#B5B5C9</item>
+        <item name="fontFamily">@font/graphik_500</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

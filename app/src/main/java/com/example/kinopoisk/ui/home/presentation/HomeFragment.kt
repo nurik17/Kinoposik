@@ -10,14 +10,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.kinopoisk.R
-import com.example.kinopoisk.data.MovieListRepository
+import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentHomeBinding
 import com.example.kinopoisk.domain.RetrofitClient
+import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.ui.home.adapter.VerticalAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -61,6 +62,8 @@ class HomeFragment : Fragment() {
 
         setUpMovies()
         stateMovies()
+
+
     }
 
     private fun setUpMovies() {
