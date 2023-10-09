@@ -12,9 +12,9 @@ class OnBoardingAdapter(private val items : List<ListOnBoarding>
     class OnBoardingViewHolder(private val binding: OnboardingItemsBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListOnBoarding) {
             binding.text.text = item.text
-            Glide.with(binding.image.context)
+            Glide.with(binding.mainImage.context)
                 .load(item.id)
-                .into(binding.image)
+                .into(binding.mainImage)
         }
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +9,15 @@
     app:layoutDescription="@xml/fragment_movie_detail_scene"
     tools:context=".ui.movieDetail.MovieDetailFragment">
 
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
@@ -18,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -47,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/graphik_500"
-                android:text="Сила добра"
+                android:gravity="center"
+                android:text="-"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="@id/main_image"
@@ -61,7 +73,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="6.4"
+                android:text="-"
                 app:layout_constraintEnd_toStartOf="@id/name_russian"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +84,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Китобой"
+                android:text="-"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/rating"
                 app:layout_constraintTop_toTopOf="@id/flow1" />
@@ -98,7 +110,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2020"
+                android:text="-"
                 app:layout_constraintEnd_toStartOf="@+id/genre"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +121,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="драма,приключение"
+                android:text="-,-"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/year" />
 
@@ -133,7 +145,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Russian"
+                android:text="-"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -141,7 +153,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1ч 30мин"
+                android:text="-"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -149,7 +161,7 @@
                 style="@style/film_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="16+"
+                android:text="-"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.helper.widget.Flow
@@ -235,7 +247,7 @@
                 android:layout_margin="16dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/graphik_700"
-                android:text="Чукотский парень влюбляется  в американскую вебкам-модель. Приз Венеции, Кристина Асмус  в роли девушки мечты"
+                android:text=""
                 android:textColor="#272727"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/main_image" />
@@ -248,7 +260,7 @@
                 android:layout_margin="16dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/graphik_400"
-                android:text="Все меняется в жизни юного чукотского охотника Лёшки  с появлением в поселке интернета. Он влюбляется — впервые и сильно —  в молчаливую девушку..."
+                android:text=""
                 android:textColor="#272727"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/description" />
@@ -258,38 +270,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="В фильме снимались"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/short_description"
                 android:fontFamily="@font/graphik_600"
+                android:text="В фильме снимались"
+                android:textColor="#272727"
                 android:textSize="20sp"
-                android:textColor="#272727"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/short_description" />
 
             <TextView
                 android:id="@+id/cast_item_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="27 >"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/short_description"
                 android:fontFamily="@font/graphik_500"
+                android:text="27 >"
+                android:textColor="#3D3BFF"
                 android:textSize="18sp"
-                android:textColor="#3D3BFF"/>
-            
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/short_description" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_cast"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_cast"
-                android:layout_margin="16dp"
                 app:spanCount="4"
-                tools:listitem="@layout/item_cast"/>
-
+                tools:listitem="@layout/item_cast" />
 
 
             <TextView
@@ -297,37 +308,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Над фильмом работали"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_cast"
                 android:fontFamily="@font/graphik_600"
+                android:text="Над фильмом работали"
+                android:textColor="#272727"
                 android:textSize="20sp"
-                android:textColor="#272727"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_cast" />
 
             <TextView
                 android:id="@+id/staff_item_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="19 >"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_cast"
                 android:fontFamily="@font/graphik_500"
+                android:text="19 >"
+                android:textColor="#3D3BFF"
                 android:textSize="18sp"
-                android:textColor="#3D3BFF"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_cast" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_staff"
-                android:layout_margin="16dp"
                 app:spanCount="2"
-                tools:listitem="@layout/item_cast"/>
+                tools:listitem="@layout/item_cast" />
 
 
             <TextView
@@ -335,36 +346,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Галерея"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_staff"
                 android:fontFamily="@font/graphik_600"
+                android:text="Галерея"
+                android:textColor="#272727"
                 android:textSize="20sp"
-                android:textColor="#272727"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_staff" />
 
             <TextView
                 android:id="@+id/gallery_item_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="17 >"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_staff"
                 android:fontFamily="@font/graphik_500"
+                android:text="17 >"
+                android:textColor="#3D3BFF"
                 android:textSize="18sp"
-                android:textColor="#3D3BFF"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_staff" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_gallery"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gallery"
-                android:layout_margin="16dp"
-                tools:listitem="@layout/item_cast"/>
+                tools:listitem="@layout/item_cast" />
 
 
             <TextView
@@ -372,36 +383,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Похожие фильмы"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_gallery"
                 android:fontFamily="@font/graphik_600"
+                android:text="Похожие фильмы"
+                android:textColor="#272727"
                 android:textSize="20sp"
-                android:textColor="#272727"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_gallery" />
 
             <TextView
                 android:id="@+id/simpleFilm_item_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="17 >"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_gallery"
                 android:fontFamily="@font/graphik_500"
+                android:text="17 >"
+                android:textColor="#3D3BFF"
                 android:textSize="18sp"
-                android:textColor="#3D3BFF"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_gallery" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_simpleFilm"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/simpleFilm"
-                android:layout_margin="16dp"
-                tools:listitem="@layout/item_cast"/>
+                tools:listitem="@layout/item_cast" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

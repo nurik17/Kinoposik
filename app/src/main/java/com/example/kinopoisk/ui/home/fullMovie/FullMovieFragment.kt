@@ -2,7 +2,6 @@ package com.example.kinopoisk.ui.home.fullMovie
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.kinopoisk.R
 import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentFullMovieBinding
 import com.example.kinopoisk.domain.RetrofitClient
-import com.example.kinopoisk.entity.Movie
-import com.example.kinopoisk.entity.onItemClick
+import com.example.kinopoisk.domain.onItemClick
 import com.example.kinopoisk.ui.home.adapter.MovieListAdapter
 import com.example.kinopoisk.ui.home.presentation.HomeViewModel
 import kotlinx.coroutines.flow.launchIn

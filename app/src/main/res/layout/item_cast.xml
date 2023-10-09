@@ -33,8 +33,10 @@
         android:layout_marginEnd="16sp"
         android:layout_toEndOf="@+id/cardview"
         android:gravity="end"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#272727"
         android:text="Denis Ivanov"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -46,7 +48,9 @@
         android:layout_marginEnd="16sp"
         android:layout_toEndOf="@+id/cardview"
         android:text="Robot"
-        android:textSize="10sp"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#838390"
+        android:textSize="13sp"
         android:textStyle="italic" />
 
 </RelativeLayout>

@@ -1,7 +1,9 @@
 package com.example.kinopoisk.domain
 
-import com.example.kinopoisk.domain.MovieApi
 import com.example.kinopoisk.entity.Movie
+import com.example.kinopoisk.entity.PicturesItem
+import com.example.kinopoisk.entity.SimilarsItem
+import com.example.kinopoisk.entity.StaffItem
 
 class MovieListRepository(private val api: MovieApi) {
 
@@ -17,5 +19,19 @@ class MovieListRepository(private val api: MovieApi) {
     }
     suspend fun getReleases(year: String,month: String,page: Int?) : List<Movie>{
         return api.getReleases(year, month, page).releases
+    }
+    suspend fun getMovieDetails(id : Int) : Movie{
+        return api.getMovieDetails(id)
+    }
+
+    suspend fun getStaffInfo(filmId : Int) : ArrayList<StaffItem>{
+        return api.getStaffInfo(filmId)
+    }
+    suspend fun getPictures(id: Int, type: String, page: Int) : List<PicturesItem>{
+        return api.getPictures(id,type, page).items
+    }
+
+    suspend fun getSimilarFilm(id : Int) : List<Movie>{
+        return api.getSimilarFilm(id).items
     }
 }

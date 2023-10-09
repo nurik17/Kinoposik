@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kinopoisk.R
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.databinding.MainItemBinding
-import com.example.kinopoisk.entity.onItemClick
+import com.example.kinopoisk.domain.onItemClick
 import com.example.kinopoisk.ui.home.presentation.HomeFragment
 
 class VerticalAdapter(private val fragment : HomeFragment) :
