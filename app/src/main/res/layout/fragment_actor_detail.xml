@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.movieDetail.ActorDetailFragment"
+    android:padding="16dp">
+
+
+
+    <ImageView
+        android:id="@+id/arrowBack"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="180dp"
+        android:layout_height="230dp"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/arrowBack"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/actor_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/actor_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:breakStrategy="high_quality"
+        android:singleLine="false"
+        app:layout_constraintStart_toEndOf="@id/cardview"
+        app:layout_constraintTop_toTopOf="@id/cardview"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16sp"
+        android:layout_toEndOf="@+id/cardview"
+        android:gravity="end"
+        android:fontFamily="@font/graphik_600"
+        android:textColor="#272727"
+        android:text="Denis Ivanov"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/profession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="none"
+        android:maxLines="1"
+        app:layout_constraintStart_toEndOf="@id/cardview"
+        app:layout_constraintTop_toBottomOf="@id/actor_name"
+        android:layout_below="@+id/actor_name"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16sp"
+        android:layout_toEndOf="@+id/cardview"
+        android:text="Robot"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#838390"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
+
+    <TextView
+        android:id="@+id/title_best"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/graphik_600"
+        android:text="Лучшее"
+        android:textColor="#272727"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview" />
+<!--
+    <TextView
+        android:id="@+id/all_best"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/graphik_500"
+        android:text="Все >"
+        android:textColor="#3D3BFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview" />-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_actor"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_height="230dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_best"
+        tools:listitem="@layout/main_item"/>
+
+
+    <TextView
+        android:id="@+id/title_filmography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/graphik_600"
+        android:text="Фильмография"
+        android:textColor="#272727"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_actor" />
+
+
+    <TextView
+        android:id="@+id/all_filmography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/graphik_500"
+        android:text="К списку >"
+        android:textColor="#3D3BFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_actor" />
+
+    <TextView
+        android:id="@+id/all_filmography_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/graphik_400"
+        android:text="44"
+        android:textColor="#838391"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_filmography" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.kinopoisk.R
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.entity.PicturesItem
+import com.example.kinopoisk.entity.StaffItem
 
 fun onItemClick(item: Movie, fragment : Fragment){
     val bundle = Bundle()
@@ -22,4 +23,10 @@ fun onPictureClick(item : PicturesItem,imageView: ImageView,fragment: Fragment){
     val pictureUrl = item.imageUrl
     bundle.putString("pictureUrl",pictureUrl)
 
+}
+fun onActorClick(item : StaffItem,imageView: ImageView,fragment: Fragment){
+    val bundle = Bundle()
+    val personId = item.staffId
+    bundle.putInt("personId",personId)
+    fragment.findNavController().navigate(R.id.actorDetailFragment,bundle)
 }

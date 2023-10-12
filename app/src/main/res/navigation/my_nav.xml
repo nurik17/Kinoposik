@@ -50,5 +50,20 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.example.kinopoisk.ui.movieDetail.MovieDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail" />
+        tools:layout="@layout/fragment_movie_detail" >
+        <action
+            android:id="@+id/action_movieDetailFragment_to_actorDetailFragment"
+            app:destination="@id/actorDetailFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/actorDetailFragment"
+        android:name="com.example.kinopoisk.ui.movieDetail.ActorDetailFragment"
+        android:label="fragment_actor_detail"
+        tools:layout="@layout/fragment_actor_detail" />
+    <fragment
+        android:id="@+id/filmographyFragment"
+        android:name="com.example.kinopoisk.ui.movieDetail.FilmographyFragment"
+        android:label="fragment_filmography"
+        tools:layout="@layout/fragment_filmography" />
 </navigation>

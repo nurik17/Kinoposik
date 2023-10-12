@@ -1,5 +1,6 @@
 package com.example.kinopoisk.domain
 
+import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.entity.PicturesItem
 import com.example.kinopoisk.entity.SimilarsItem
@@ -33,5 +34,8 @@ class MovieListRepository(private val api: MovieApi) {
 
     suspend fun getSimilarFilm(id : Int) : List<Movie>{
         return api.getSimilarFilm(id).items
+    }
+    suspend fun getPersonDetails(id : Int) : PersonDetailsDto{
+        return  api.getPersonDetails(id)
     }
 }

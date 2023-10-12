@@ -6,23 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.kinopoisk.R
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentMovieDetailBinding
+import com.example.kinopoisk.domain.onActorClick
 import com.example.kinopoisk.domain.onItemClick
 import com.example.kinopoisk.domain.onPictureClick
-import com.example.kinopoisk.ui.gallery.GalleryViewModel
-import com.example.kinopoisk.ui.gallery.GalleryViewModelFactory
+import com.example.kinopoisk.entity.StaffItem
 import com.example.kinopoisk.ui.gallery.PicturesAdapter
+import com.example.kinopoisk.ui.home.adapter.CastAdapter
 import com.example.kinopoisk.ui.home.adapter.MovieListAdapter
+import com.example.kinopoisk.ui.home.adapter.StaffAdapter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -32,7 +35,9 @@ class MovieDetailFragment : Fragment() {
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MovieDetailViewModel
-    private lateinit var castAdapter: CastAdapter
+    private val castAdapter = CastAdapter {item,view ->
+        onActorClick(item,view,this)
+    }
     private lateinit var staffAdapter: StaffAdapter
     private lateinit var similarAdapter: MovieListAdapter
     private lateinit var imageAdapter: PicturesAdapter
@@ -62,13 +67,6 @@ class MovieDetailFragment : Fragment() {
         observeState()
 
 
-
-        imageAdapter = PicturesAdapter { movie, imageView ->
-            onPictureClick(movie, imageView, this)
-        }
-        binding.recyclerGallery.adapter = imageAdapter
-        binding.recyclerGallery.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
    /*     if (kinopoiskId != 0) {
             val imageViewModel = ViewModelProvider(
@@ -100,18 +98,17 @@ class MovieDetailFragment : Fragment() {
 
     }
 
-
     private fun setUpRecyclerViews() {
 
-        castAdapter = CastAdapter()
-        binding.recyclerCast.adapter = castAdapter
-        binding.recyclerCast.layoutManager =
+        binding.recyclerActor.adapter = castAdapter
+        binding.recyclerActor.layoutManager =
             GridLayoutManager(requireContext(), 4, GridLayoutManager.HORIZONTAL, false)
 
         staffAdapter = StaffAdapter()
         binding.recyclerStaff.adapter = staffAdapter
         binding.recyclerStaff.layoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
+
 
         similarAdapter = MovieListAdapter { movie ->
             onItemClick(movie, this)

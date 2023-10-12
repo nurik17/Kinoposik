@@ -2,6 +2,7 @@ package com.example.kinopoisk.domain
 
 import com.example.kinopoisk.data.MovieListDto
 import com.example.kinopoisk.data.PagedMoviesDto
+import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.data.PicturesDto
 import com.example.kinopoisk.data.ReleaseListDto
 import com.example.kinopoisk.data.SimilarsDto
@@ -70,4 +71,10 @@ interface MovieApi {
     suspend fun getSimilarFilm(
         @Path("id") id : Int
     ) : MovieListDto
+
+    @Headers("X-API-KEY: $API_KEY")
+    @GET("/api/v1/staff/{id}")
+    suspend fun getPersonDetails(
+        @Path("id") id : Int
+    ) : PersonDetailsDto
 }

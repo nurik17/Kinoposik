@@ -291,7 +291,7 @@
                 app:layout_constraintTop_toBottomOf="@id/short_description" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_cast"
+                android:id="@+id/recycler_actor"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
@@ -313,7 +313,7 @@
                 android:textColor="#272727"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_cast" />
+                app:layout_constraintTop_toBottomOf="@id/recycler_actor" />
 
             <TextView
                 android:id="@+id/staff_item_number"
@@ -326,7 +326,7 @@
                 android:textColor="#3D3BFF"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_cast" />
+                app:layout_constraintTop_toBottomOf="@id/recycler_actor" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_staff"
