@@ -49,13 +49,26 @@ class ActorDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUIListeners()
-        val id = arguments?.getInt("personId")
+        infoSetUp()
+        listOfFilms()
 
+        val id = arguments?.getInt("personId")
         viewModel.getPersonInfo(id!!)
-        Log.d("ActorDetailFragment", "")
 
         binding.recyclerActor.adapter = adapter
 
+
+    }
+    private fun listOfFilms(){
+
+        viewModel.filteredList.onEach {
+            adapter.submitList(it)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun infoSetUp(){
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED){
                 viewModel.actorInfo.collect{
@@ -67,24 +80,22 @@ class ActorDetailFragment : Fragment() {
                             .load(it?.posterUrl)
                             .into(actorPhoto)
 
+                        val actorName = it?.nameRu
+                        val personId = it?.personId
                         val films = it?.films
                         binding.allFilmography.setOnClickListener {
                             val bundle = Bundle()
                             val filmographyArrayList = films as? ArrayList<out Parcelable>
                             bundle.putParcelableArrayList("filmography",filmographyArrayList)
+                            bundle.putInt("personId",personId!!)
+                            bundle.putString("actorName",actorName)
                             findNavController().navigate(R.id.filmographyFragment,bundle)
                         }
                     }
                 }
             }
         }
-        viewModel.filteredList.onEach {
-            adapter.submitList(it)
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
-
     }
-
-
     private fun setupUIListeners() {
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()

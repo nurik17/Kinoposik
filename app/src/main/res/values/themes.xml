@@ -35,4 +35,12 @@
         <item name="fontFamily">@font/graphik_500</item>
         <item name="android:textSize">15sp</item>
     </style>
+    
+    <style name="Widget.MyApp.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/text_color_chip_state</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:checkable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
 </resources>
