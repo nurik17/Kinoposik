@@ -37,7 +37,6 @@ class CastAdapter(
             }
         }
     }
-
 }
 
 class StaffDiffUtilCallback : DiffUtil.ItemCallback<StaffItem>(){

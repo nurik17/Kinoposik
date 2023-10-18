@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="180dp"
+    android:padding="16sp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="100dp"
+        android:layout_height="180dp"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="5dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/movie_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16sp"
+        android:layout_toEndOf="@+id/cardview"
+        android:gravity="start"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#272727"
+        android:text="Denis Ivanov"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/movie_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_name"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16sp"
+        android:layout_toEndOf="@+id/cardview"
+        android:text="Robot"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#838390"
+        android:textSize="13sp"
+        android:textStyle="italic" />
+
+</RelativeLayout>

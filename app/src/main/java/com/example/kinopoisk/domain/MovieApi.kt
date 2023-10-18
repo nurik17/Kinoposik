@@ -1,6 +1,7 @@
 package com.example.kinopoisk.domain
 
 import com.example.kinopoisk.data.MovieListDto
+import com.example.kinopoisk.data.MovieSearchDto
 import com.example.kinopoisk.data.PagedMoviesDto
 import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.data.PicturesDto
@@ -77,4 +78,19 @@ interface MovieApi {
     suspend fun getPersonDetails(
         @Path("id") id : Int
     ) : PersonDetailsDto
+
+    @Headers("X-API-KEY: $API_KEY")
+    @GET("/api/v2.2/films?")
+    suspend fun searchInfo(
+        @Query("countries") countries : Int?,
+        @Query("genres") genres : Int?,
+        @Query("order") order : String,
+        @Query("type") type : String,
+        @Query("ratingFrom") ratingFrom : Int,
+        @Query("ratingTo") ratingTo : Int,
+        @Query("yearFrom") yearFrom : Int,
+        @Query("yearTo") yearTo : Int,
+        @Query("keyword") keyword : String,
+        @Query("page") page : Int?,
+    ) : MovieSearchDto
 }

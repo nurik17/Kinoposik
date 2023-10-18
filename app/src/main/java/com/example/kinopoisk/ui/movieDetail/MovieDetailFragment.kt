@@ -35,10 +35,13 @@ class MovieDetailFragment : Fragment() {
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MovieDetailViewModel
+
     private val castAdapter = CastAdapter {item,view ->
         onActorClick(item,view,this)
     }
-    private lateinit var staffAdapter: StaffAdapter
+    private val staffAdapter = StaffAdapter{item,view->
+        onActorClick(item,view,this)
+    }
     private lateinit var similarAdapter: MovieListAdapter
     private lateinit var imageAdapter: PicturesAdapter
 
@@ -65,9 +68,6 @@ class MovieDetailFragment : Fragment() {
         observeFilmGeneralInfo()
         setUpAdapterInfo()
         observeState()
-
-
-
    /*     if (kinopoiskId != 0) {
             val imageViewModel = ViewModelProvider(
                 this, GalleryViewModelFactory(kinopoiskId!!)
@@ -99,16 +99,13 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setUpRecyclerViews() {
-
         binding.recyclerActor.adapter = castAdapter
         binding.recyclerActor.layoutManager =
             GridLayoutManager(requireContext(), 4, GridLayoutManager.HORIZONTAL, false)
 
-        staffAdapter = StaffAdapter()
         binding.recyclerStaff.adapter = staffAdapter
         binding.recyclerStaff.layoutManager =
             GridLayoutManager(requireContext(), 2, GridLayoutManager.HORIZONTAL, false)
-
 
         similarAdapter = MovieListAdapter { movie ->
             onItemClick(movie, this)
@@ -116,11 +113,9 @@ class MovieDetailFragment : Fragment() {
         binding.recyclerSimpleFilm.adapter = similarAdapter
         binding.recyclerSimpleFilm.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
     }
 
     private fun setUpAdapterInfo() {
-
         viewModel.staffList.onEach { it ->
             castAdapter.run {
                 submitList(it.filter {
@@ -145,8 +140,6 @@ class MovieDetailFragment : Fragment() {
             similarAdapter.submitList(it)
             binding.simpleFilmItemNumber.text = it.size.toString()
         }.launchIn(viewLifecycleOwner.lifecycleScope)
-
-
     }
 
     @SuppressLint("SetTextI18n")
