@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    tools:context=".ui.search.SearchSettingsFragment">
+
+    <ImageView
+        android:id="@+id/arrowBack"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_screenName" />
+
+    <TextView
+        android:id="@+id/tv_screenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:fontFamily="@font/graphik_600"
+        android:textColor="#272727"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Настройки поиска"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#838390"
+        app:layout_constraintTop_toBottomOf="@id/arrowBack"
+        android:text="Показывать"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/button_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tv_show"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:singleSelection="true"
+        app:checkedButton="@id/left_btn">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Все"
+            style="@style/ToogleButtonStyle"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/center_btn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Фильмы"
+            style="@style/ToogleButtonStyle"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/right_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сериалы"
+            style="@style/ToogleButtonStyle"
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_group"
+        android:text="Страна"
+        style="@style/settingsTextStyle"/>
+
+    <TextView
+        android:id="@+id/tv_country_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_group"
+        android:text="Россия"
+        style="@style/settingsTextTitleStyle"/>
+    
+    <View
+        android:id="@+id/line1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#4DB5B5C9"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_country"
+        />
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        android:text="Жанр"
+        style="@style/settingsTextStyle"/>
+
+    <TextView
+        android:id="@+id/tv_genre_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        android:text="Комедия"
+        style="@style/settingsTextTitleStyle"/>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#4DB5B5C9"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_genre"
+        />
+
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        android:text="Год"
+        style="@style/settingsTextStyle"/>
+
+    <TextView
+        android:id="@+id/tv_year_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="с 1998 до 2017"
+        style="@style/settingsTextTitleStyle"/>
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#4DB5B5C9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_year"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line3"
+        android:text="Рейтинг"
+        style="@style/settingsTextStyle"/>
+
+    <TextView
+        android:id="@+id/tv_rating_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/line3"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="любой"
+        style="@style/settingsTextTitleStyle"/>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_rating_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/sliderStyle"
+        />
+    <TextView
+        android:id="@+id/tv_rating1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/slider"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="1"
+        android:layout_marginStart="18dp"
+        android:textSize="18sp"
+        style="@style/settingsTextTitleStyle"
+        android:layout_marginTop="2dp"/>
+    <TextView
+        android:id="@+id/tv_rating10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/slider"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="10"
+        android:layout_marginStart="18dp"
+        android:textSize="18sp"
+        style="@style/settingsTextTitleStyle"
+        android:layout_marginTop="2dp"/>
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#4DB5B5C9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_rating1"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tv_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:fontFamily="@font/graphik_400"
+        android:textColor="#838390"
+        app:layout_constraintTop_toBottomOf="@id/line4"
+        android:text="Сортировать"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"/>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/button_group2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tv_sort"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:singleSelection="true"
+        app:checkedButton="@id/left_btn2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/left_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Дата"
+            style="@style/ToogleButtonStyle"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/center_btn2"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Популярность"
+            style="@style/ToogleButtonStyle"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/right_btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Рейтинг"
+            style="@style/ToogleButtonStyle"
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <View
+        android:id="@+id/line5"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#4DB5B5C9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_group2"
+        android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/icon_see"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_see"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line5"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_notSee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/icon_see"
+        app:layout_constraintTop_toBottomOf="@id/line5"
+        android:text="Не просмотрен"
+        android:layout_marginStart="50dp"
+        style="@style/settingsTextStyle"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

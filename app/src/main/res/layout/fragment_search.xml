@@ -90,7 +90,7 @@
         android:layout_marginTop="70dp"
         android:fontFamily="@font/graphik_500"
         android:gravity="center"
-        android:text="К сожалению, по вашему запросу /n ничего не найдено"
+        android:text="К сожалению, по вашему запросу\nничего не найдено"
         android:textColor="#272727"
         android:textSize="18sp"
         android:visibility="gone"

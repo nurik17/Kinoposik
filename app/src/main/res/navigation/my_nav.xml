@@ -36,7 +36,11 @@
         android:id="@+id/searchFragment"
         android:name="com.example.kinopoisk.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchSettingsFragment"
+            app:destination="@id/searchSettingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fullMovieFragment"
         android:name="com.example.kinopoisk.ui.home.fullMovie.FullMovieFragment"
@@ -66,4 +70,9 @@
         android:name="com.example.kinopoisk.ui.filmography.FilmographyFragment"
         android:label="fragment_filmography"
         tools:layout="@layout/fragment_filmography" />
+    <fragment
+        android:id="@+id/searchSettingsFragment"
+        android:name="com.example.kinopoisk.ui.search.SearchSettingsFragment"
+        android:label="fragment_search_settings"
+        tools:layout="@layout/fragment_search_settings" />
 </navigation>

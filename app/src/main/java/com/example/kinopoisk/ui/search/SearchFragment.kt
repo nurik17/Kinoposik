@@ -3,14 +3,16 @@ package com.example.kinopoisk.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kinopoisk.R
 import com.example.kinopoisk.databinding.FragmentSearchBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -27,8 +29,8 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -47,6 +49,10 @@ class SearchFragment : Fragment() {
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
             }
         })
+
+        binding.iconFilter.setOnClickListener {
+            findNavController().navigate(R.id.action_searchFragment_to_searchSettingsFragment)
+        }
     }
 
     private fun setUpRecyclerView(){

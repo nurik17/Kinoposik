@@ -7,6 +7,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.kinopoisk.data.SearchState
 import com.example.kinopoisk.data.SettingData
 import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.domain.RetrofitClient
@@ -14,10 +15,14 @@ import com.example.kinopoisk.entity.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 
 class SearchViewModel : ViewModel() {
 
     private val repository = MovieListRepository(RetrofitClient.api)
+
+    private val _stateSearch = MutableStateFlow<SearchState>(SearchState.Empty)
+    val state = _stateSearch
 
     private var _searchSettings = MutableStateFlow(SettingData())
     val searchSettings = _searchSettings.asStateFlow()
