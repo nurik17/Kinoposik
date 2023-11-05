@@ -1,5 +1,6 @@
 package com.example.kinopoisk.domain
 
+import com.example.kinopoisk.data.GenresCountriesDto
 import com.example.kinopoisk.data.MovieSearchDto
 import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.entity.Movie
@@ -70,5 +71,8 @@ class MovieListRepository(private val api: MovieApi) {
             imdbld,
             page
         ).items
+    }
+    suspend fun getGenresCountries() : GenresCountriesDto{
+        return api.getGenresCountries()
     }
 }

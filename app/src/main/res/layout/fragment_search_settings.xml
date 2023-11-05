@@ -50,23 +50,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:singleSelection="true"
-        app:checkedButton="@id/left_btn">
+        app:checkedButton="@id/all_filter_btn">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/left_btn"
+            android:id="@+id/all_filter_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Все"
             style="@style/ToogleButtonStyle"
             />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/center_btn"
+            android:id="@+id/film_filter_btn"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:text="Фильмы"
             style="@style/ToogleButtonStyle"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/right_btn"
+            android:id="@+id/serials_filter_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Сериалы"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@id/button_group"
         android:text="Россия"
         style="@style/settingsTextTitleStyle"/>
-    
+
     <View
         android:id="@+id/line1"
         android:layout_width="0dp"
@@ -186,6 +186,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         style="@style/sliderStyle"
+        android:valueFrom="1"
+        app:values="@array/initial_slider_rating_values"
+        android:valueTo="10"
         />
     <TextView
         android:id="@+id/tv_rating1"
@@ -242,23 +245,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:singleSelection="true"
-        app:checkedButton="@id/left_btn2">
+        app:checkedButton="@id/year_filter_btn">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/left_btn2"
+            android:id="@+id/year_filter_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Дата"
             style="@style/ToogleButtonStyle"
             />
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/center_btn2"
+            android:id="@+id/popular_filter_btn"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:text="Популярность"
             style="@style/ToogleButtonStyle"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/right_btn3"
+            android:id="@+id/rating_filter_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Рейтинг"

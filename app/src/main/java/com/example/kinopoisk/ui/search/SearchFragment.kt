@@ -1,19 +1,17 @@
 package com.example.kinopoisk.ui.search
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kinopoisk.R
 import com.example.kinopoisk.databinding.FragmentSearchBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -34,21 +32,11 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
-
-        binding.editText.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(p0: Editable?) {
-            }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val keyword = p0.toString()
-                viewModel.getMovies(keyword).onEach {
-                    searchAdapter.submitData(it)
-                }.launchIn(viewLifecycleOwner.lifecycleScope)
-            }
-        })
+        searchFunction()
 
         binding.iconFilter.setOnClickListener {
             findNavController().navigate(R.id.action_searchFragment_to_searchSettingsFragment)
@@ -62,7 +50,16 @@ class SearchFragment : Fragment() {
         recyclerView.adapter = searchAdapter
     }
 
-
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun searchFunction(){
+        binding.editText.textInputAsFlow() // extension function
+            .onEach { text->
+                viewModel.getMovies(text).onEach {
+                    searchAdapter.submitData(it)
+                }.launchIn(viewLifecycleOwner.lifecycleScope)
+            }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

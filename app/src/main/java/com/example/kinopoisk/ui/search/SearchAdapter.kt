@@ -10,8 +10,7 @@ import com.example.kinopoisk.entity.Genre
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.ui.home.adapter.DiffUtilCallback
 
-class SearchAdapter: PagingDataAdapter<Movie, SearchViewHolder>(DiffUtilCallback()) {
-
+class SearchAdapter : PagingDataAdapter<Movie, SearchAdapter.SearchViewHolder>(DiffUtilCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
             SearchItemBinding.inflate(
@@ -24,18 +23,24 @@ class SearchAdapter: PagingDataAdapter<Movie, SearchViewHolder>(DiffUtilCallback
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.apply {
-            movieName.text = item?.nameRu
-            movieGenre.text = getFirstGenre(item?.genres ?: emptyList())
-
-            Glide.with(imageView)
-                .load(item?.posterUrl)
-                .into(imageView)
-        }
+        holder.bind(item)
     }
-    private fun getFirstGenre(genre: List<Genre>): String {
-        return genre.firstOrNull()?.genre ?: ""
+
+    class SearchViewHolder(val binding: SearchItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Movie?) {
+            binding.apply {
+                movieName.text = item?.nameRu
+                movieGenre.text = getFirstGenre(item?.genres ?: emptyList())
+
+                Glide.with(imageView)
+                    .load(item?.posterUrl)
+                    .into(imageView)
+            }
+        }
+
+        private fun getFirstGenre(genre: List<Genre>): String {
+            return genre.firstOrNull()?.genre ?: ""
+        }
     }
 }
 
-class SearchViewHolder(val binding : SearchItemBinding) : RecyclerView.ViewHolder(binding.root)

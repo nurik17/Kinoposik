@@ -23,17 +23,6 @@ class StaffAdapter(
 
     override fun onBindViewHolder(holder: StaffViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.apply {
-            actorName.text = item.nameRu
-            profession.text = item.professionText
-
-            Glide.with(imageView)
-                .load(item.posterUrl)
-                .into(imageView)
-
-            root.setOnClickListener {
-                onClick.invoke(item,imageView)
-            }
-        }
+        holder.bind(item,onClick)
     }
 }

@@ -72,8 +72,6 @@
     <style name="sliderStyle" parent="Widget.MaterialComponents.Slider">
         <item name="android:layout_marginTop">5dp</item>
         <item name="tickVisible">false</item>
-        <item name="android:valueFrom">0.0</item>
-        <item name="android:valueTo">10.0</item>
         <item name="trackColorActive">#3D3BFF</item>
         <item name="trackColorInactive">#4DB5B5C9</item>
         <item name="thumbColor">@color/white</item>

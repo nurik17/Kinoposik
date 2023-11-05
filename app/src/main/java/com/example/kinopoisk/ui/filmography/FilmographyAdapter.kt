@@ -24,10 +24,16 @@ class FilmographyAdapter(
 
     override fun onBindViewHolder(holder: FilmographyViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.apply {
-            movieName.text = item?.nameRu ?: item.nameEn
+        holder.bind(item,onClick) // здесь нельзя реализовать код потму что SOLID
+        }
+    }
+
+class FilmographyViewHolder(val binding: ItemFilmographyBinding) : RecyclerView.ViewHolder(binding.root){
+    fun bind(item : Movie,onClick: (Movie) -> Unit){
+        binding.apply {
+            movieName.text = item.nameRu ?: item.nameEn
             movieGenre.text = item.description
-            rating.text = item?.rating ?: "6.5"
+            rating.text = item.rating ?: "6.5"
 
             root.setOnClickListener {
                 onClick.invoke(item)
@@ -35,6 +41,3 @@ class FilmographyAdapter(
         }
     }
 }
-
-class FilmographyViewHolder(val binding: ItemFilmographyBinding) :
-    RecyclerView.ViewHolder(binding.root)

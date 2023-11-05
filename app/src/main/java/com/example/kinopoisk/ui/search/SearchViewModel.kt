@@ -7,56 +7,40 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.kinopoisk.data.ParamsFilterFilm
 import com.example.kinopoisk.data.SearchState
 import com.example.kinopoisk.data.SettingData
 import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.domain.RetrofitClient
+import com.example.kinopoisk.entity.FilterCountry
+import com.example.kinopoisk.entity.FilterGenre
 import com.example.kinopoisk.entity.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
 
     private val repository = MovieListRepository(RetrofitClient.api)
+    private lateinit var countriesList : List<FilterCountry>
+    private lateinit var genresList : List<FilterGenre>
 
-    private val _stateSearch = MutableStateFlow<SearchState>(SearchState.Empty)
-    val state = _stateSearch
 
-    private var _searchSettings = MutableStateFlow(SettingData())
+    private val _searchSettings = MutableStateFlow(SettingData())
     val searchSettings = _searchSettings.asStateFlow()
 
-    fun changeCountry(selectedCountry: Int?) {
-        _searchSettings.value.selectedCountry = selectedCountry
-    }
+    private val _filterFlow = MutableStateFlow(ParamsFilterFilm())
+    val filterFlow = _filterFlow.asStateFlow()
 
-    fun changeGenre(selectedGenre: Int?) {
-        _searchSettings.value.selectedGenre = selectedGenre
-    }
+    fun getFiltersFull() = _filterFlow.value
 
-    fun changeOrder(selectedOrder: String) {
-        _searchSettings.value.selectedOrder = selectedOrder
-    }
-
-    fun changeType(type: String) {
-        _searchSettings.value.selectedType = type
-    }
-
-    fun changeYearFrom(yearFrom: Int) {
-        _searchSettings.value.yearFrom = yearFrom
-    }
-
-    fun changeYearTo(yearTo: Int) {
-        _searchSettings.value.yearTo = yearTo
-    }
-
-    fun changeRatingFrom(ratingFrom: Int) {
-        _searchSettings.value.ratingFrom = ratingFrom
-    }
-
-    fun changeRatingTo(ratingTo: Int) {
-        _searchSettings.value.ratingTo = ratingTo
+    fun updateFiltersFull(filterFilm : ParamsFilterFilm){
+        viewModelScope.launch {
+            if(_filterFlow.value != filterFilm)
+                _filterFlow.value = filterFilm
+        }
     }
 
 

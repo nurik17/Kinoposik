@@ -2,7 +2,6 @@ package com.example.kinopoisk.ui.filmography
 
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View

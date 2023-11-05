@@ -1,5 +1,6 @@
 package com.example.kinopoisk.domain
 
+import com.example.kinopoisk.data.GenresCountriesDto
 import com.example.kinopoisk.data.MovieListDto
 import com.example.kinopoisk.data.MovieSearchDto
 import com.example.kinopoisk.data.PagedMoviesDto
@@ -93,4 +94,8 @@ interface MovieApi {
         @Query("keyword") keyword : String,
         @Query("page") page : Int?,
     ) : MovieSearchDto
+
+    @Headers("X-API-KEY: $API_KEY")
+    @GET("/api/v2.2/films/filters")
+    suspend fun getGenresCountries() : GenresCountriesDto
 }

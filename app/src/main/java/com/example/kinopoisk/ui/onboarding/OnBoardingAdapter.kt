@@ -27,5 +27,4 @@ class OnBoardingAdapter(private val items : List<ListOnBoarding>
     override fun onBindViewHolder(holder: OnBoardingViewHolder, position: Int) {
         holder.bind(items[position])
     }
-
 }

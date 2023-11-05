@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val bottomNavView: BottomNavigationView = binding.btmNav
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val fragment = this.supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {

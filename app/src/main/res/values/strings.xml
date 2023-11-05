@@ -14,4 +14,37 @@
 
     <string name="error_text">No internet connection</string>
 
+    <string-array name="Countries_key">
+        <item>любая</item>
+        <item>США</item>
+        <item>Франция</item>
+        <item>Италия</item>
+        <item>Россия</item>
+        <item>Канада</item>
+        <item>Германия</item>
+        <item>Австралия</item>
+        <item>Индия</item>
+    </string-array>
+
+    <string-array name="Genre_key">
+        <item>любой</item>
+        <item>боевик</item>
+        <item>вестерн</item>
+        <item>детектив</item>
+        <item>детский</item>
+        <item>документальный</item>
+        <item>драма</item>
+        <item>комедия</item>
+        <item>приключения</item>
+        <item>фантастика</item>
+        <item>фэнтези</item>
+    </string-array>
+
+    <string name="search_filters_countries_default">Все страны</string>
+    <string name="search_filters_genres_default">Все жанры</string>
+    <string name="search_settings_years_text">с %d до %d</string>
+    <string name="search_settings_rating_text">c %d до %d</string>
+
+
+
 </resources>

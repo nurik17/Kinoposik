@@ -25,17 +25,7 @@ class CastAdapter(
 
     override fun onBindViewHolder(holder: StaffViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.apply {
-            actorName.text = item.nameRu
-            profession.text = item.professionText
-
-            Glide.with(imageView)
-                .load(item.posterUrl)
-                .into(imageView)
-            root.setOnClickListener {
-                onClick.invoke(item,imageView)
-            }
-        }
+        holder.bind(item,onClick)
     }
 }
 
@@ -50,4 +40,18 @@ class StaffDiffUtilCallback : DiffUtil.ItemCallback<StaffItem>(){
 
 }
 
-class StaffViewHolder(val binding: ItemCastBinding) : RecyclerView.ViewHolder(binding.root)
+class StaffViewHolder(val binding: ItemCastBinding) : RecyclerView.ViewHolder(binding.root){
+    fun bind(item: StaffItem,onClick: (StaffItem, ImageView) -> Unit){
+        binding.apply {
+            actorName.text = item.nameRu
+            profession.text = item.professionText
+
+            Glide.with(imageView)
+                .load(item.posterUrl)
+                .into(imageView)
+            root.setOnClickListener {
+                onClick.invoke(item,imageView)
+            }
+        }
+    }
+}
