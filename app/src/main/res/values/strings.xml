@@ -44,7 +44,7 @@
     <string name="search_filters_genres_default">Все жанры</string>
     <string name="search_settings_years_text">с %d до %d</string>
     <string name="search_settings_rating_text">c %d до %d</string>
-
+    <string name="text_color_hint">#838390</string>
 
 
 </resources>

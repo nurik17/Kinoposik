@@ -74,5 +74,13 @@
         android:id="@+id/searchSettingsFragment"
         android:name="com.example.kinopoisk.ui.search.SearchSettingsFragment"
         android:label="fragment_search_settings"
-        tools:layout="@layout/fragment_search_settings" />
+        tools:layout="@layout/fragment_search_settings" >
+        <action
+            android:id="@+id/action_searchSettingsFragment_to_yearPickerFragment"
+            app:destination="@id/yearPickerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yearPickerFragment"
+        android:name="com.example.kinopoisk.ui.search.YearPickerFragment"
+        android:label="YearPickerFragment" />
 </navigation>

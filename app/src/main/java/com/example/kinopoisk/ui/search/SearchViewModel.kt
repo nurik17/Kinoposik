@@ -1,6 +1,5 @@
 package com.example.kinopoisk.ui.search
 
-import SearchInfoPagingSource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -8,41 +7,30 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.kinopoisk.data.ParamsFilterFilm
-import com.example.kinopoisk.data.SearchState
 import com.example.kinopoisk.data.SettingData
-import com.example.kinopoisk.domain.MovieListRepository
-import com.example.kinopoisk.domain.RetrofitClient
-import com.example.kinopoisk.entity.FilterCountry
-import com.example.kinopoisk.entity.FilterGenre
 import com.example.kinopoisk.entity.Movie
+import com.example.kinopoisk.ui.search.adapter.SearchInfoPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
-
-    private val repository = MovieListRepository(RetrofitClient.api)
-    private lateinit var countriesList : List<FilterCountry>
-    private lateinit var genresList : List<FilterGenre>
 
 
     private val _searchSettings = MutableStateFlow(SettingData())
     val searchSettings = _searchSettings.asStateFlow()
 
-    private val _filterFlow = MutableStateFlow(ParamsFilterFilm())
-    val filterFlow = _filterFlow.asStateFlow()
+    private val _filterFLow = MutableStateFlow(ParamsFilterFilm())
+    val filterFlow = _filterFLow.asStateFlow()
 
-    fun getFiltersFull() = _filterFlow.value
+    fun getFiltersFull() = _filterFLow.value
 
-    fun updateFiltersFull(filterFilm : ParamsFilterFilm){
+    fun updateFiltersFull(filterFilm: ParamsFilterFilm){
         viewModelScope.launch {
-            if(_filterFlow.value != filterFilm)
-                _filterFlow.value = filterFilm
+            if(_filterFLow.value != filterFilm) _filterFLow.value = filterFilm
         }
     }
-
 
     fun getMovies(keyword: String): Flow<PagingData<Movie>> {
         return Pager(
@@ -65,5 +53,4 @@ class SearchViewModel : ViewModel() {
             }
         ).flow.cachedIn(viewModelScope)
     }
-
 }

@@ -9,7 +9,7 @@ val FILM_TYPE = listOf(
 )
 val SORTING_PARAMS = listOf(
     "YEAR",
-    "NUM_VOTE",
+    "POPULAR",
     "RATING"
 )
 

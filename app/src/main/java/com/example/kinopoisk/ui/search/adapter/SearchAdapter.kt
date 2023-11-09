@@ -1,4 +1,4 @@
-package com.example.kinopoisk.ui.search
+package com.example.kinopoisk.ui.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

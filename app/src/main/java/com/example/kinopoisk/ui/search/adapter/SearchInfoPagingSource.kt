@@ -1,11 +1,10 @@
+package com.example.kinopoisk.ui.search.adapter
+
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.domain.RetrofitClient
 import com.example.kinopoisk.entity.Movie
-import java.lang.Exception
-
-private const val STARTING_PAGE_INDEX = 1
 
 class SearchInfoPagingSource(
     private val countries: Int?,
@@ -38,13 +37,16 @@ class SearchInfoPagingSource(
             return LoadResult.Page(
                 data = response,
                 prevKey = null,
-                nextKey = if(response.isEmpty()) null else pageIndex + 1
+                nextKey = if (response.isEmpty()) null else pageIndex + 1
             )
         }catch (e : Exception){
             return LoadResult.Error(e)
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Movie>): Int = 1
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int = STARTING_PAGE_INDEX
 
+    companion object {
+        private const val STARTING_PAGE_INDEX = 1
+    }
 }
