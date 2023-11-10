@@ -1,6 +1,7 @@
 package com.example.kinopoisk.entity
 
-interface FilterGenre {
-    val genre: String
-    val id: Int
-}
+data class FilterGenre(
+    override val id: Int,
+    override val name: String
+
+) : FilterCountryGenre

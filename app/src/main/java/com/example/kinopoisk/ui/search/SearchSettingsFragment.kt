@@ -15,18 +15,19 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchSettingsFragment : BaseFragment<FragmentSearchSettingsBinding>(FragmentSearchSettingsBinding::inflate) {
+class SearchSettingsFragment :
+    BaseFragment<FragmentSearchSettingsBinding>(FragmentSearchSettingsBinding::inflate) {
 
     private val viewModel: SearchViewModel by activityViewModels()
 
-   override fun onBindView() {
+    override fun onBindView() {
         super.onBindView()
         navigationBack()
         setUpTextViews() // установка значений textView
         setFilterFilmType()
         setRangeSlider()
         setFilterSorting()
-        onClickYearPicker()
+        onClickFilters()
     }
 
     private fun setUpTextViews() {
@@ -48,7 +49,7 @@ class SearchSettingsFragment : BaseFragment<FragmentSearchSettingsBinding>(Fragm
                             else getString(R.string.search_filters_countries_default)
                         buttonGroup2.check(
                             when (filter.order) {
-                                SORTING_PARAMS[0] -> yearFilterBtn.id
+                                SORTING_PARAMS[2] -> yearFilterBtn.id
                                 SORTING_PARAMS[1] -> popularFilterBtn.id
                                 else -> ratingFilterBtn.id
                             }
@@ -67,7 +68,7 @@ class SearchSettingsFragment : BaseFragment<FragmentSearchSettingsBinding>(Fragm
     }
 
     private fun setFilterFilmType() {
-        binding.buttonGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.buttonGroup.addOnButtonCheckedListener { _, checkedId, _ ->
             when (checkedId) {
                 binding.allFilterBtn.id -> {
                     viewModel.updateFiltersFull(
@@ -137,45 +138,52 @@ class SearchSettingsFragment : BaseFragment<FragmentSearchSettingsBinding>(Fragm
         })
     }
 
-    private fun setFilterSorting(){
-        binding.buttonGroup2.addOnButtonCheckedListener { group, checkedId, isChecked ->
+    private fun setFilterSorting() {
+        binding.buttonGroup2.addOnButtonCheckedListener { _, checkedId, _ ->
             when (checkedId) {
                 binding.yearFilterBtn.id -> {
                     viewModel.updateFiltersFull(
-                        viewModel.getFiltersFull().copy(type = SORTING_PARAMS[0])
+                        viewModel.getFiltersFull().copy(order = SORTING_PARAMS[2])
                     )
                 }
 
                 binding.popularFilterBtn.id -> {
                     viewModel.updateFiltersFull(
-                        viewModel.getFiltersFull().copy(type = SORTING_PARAMS[1])
+                        viewModel.getFiltersFull().copy(order = SORTING_PARAMS[1])
                     )
                 }
 
                 else -> {
                     viewModel.updateFiltersFull(
-                        viewModel.getFiltersFull().copy(type = SORTING_PARAMS[2])
+                        viewModel.getFiltersFull().copy(order = SORTING_PARAMS[0])
                     )
                 }
             }
         }
     }
-    private fun onClickYearPicker(){
-        binding.tvYearTitle.setOnClickListener {
+
+    private fun onClickYearPicker() {
+        /*binding.tvYearTitle.setOnClickListener {
             findNavController().navigate(R.id.action_searchSettingsFragment_to_yearPickerFragment)
-        }
+        }*/
     }
 
-    /*private fun onClickFilterCountryGenreChoose(){
+    private fun onClickFilters() {
         binding.tvCountryTitle.setOnClickListener {
-            val action =
+            val action = SearchSettingsFragmentDirections
+                .actionSearchSettingsFragmentToFragmentSearchFilters(FragmentSearchFilters.KEY_COUNTRY)
+            findNavController().navigate(action)
         }
-    }*/
+        binding.tvGenreTitle.setOnClickListener {
+            val action = SearchSettingsFragmentDirections
+                .actionSearchSettingsFragmentToFragmentSearchFilters(FragmentSearchFilters.KEY_GENRE)
+            findNavController().navigate(action)
+        }
+    }
 
     private fun navigationBack() {
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }
-
 }

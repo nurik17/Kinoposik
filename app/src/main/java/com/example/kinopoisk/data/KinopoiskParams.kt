@@ -8,8 +8,8 @@ val FILM_TYPE = listOf(
     "MINI_SERIES"
 )
 val SORTING_PARAMS = listOf(
-    "YEAR",
-    "POPULAR",
-    "RATING"
+    "RATING",
+    "NUM_VOTE",
+    "YEAR"
 )
 

@@ -26,7 +26,6 @@ class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(FragmentAct
     private var adapter = MovieListAdapter{item->
         onItemClick(item,this)
     }
-
     override fun onBindView() {
         super.onBindView()
         setupUIListeners()
