@@ -1,43 +1,28 @@
 package com.example.kinopoisk.ui.filmography
 
-import android.os.Build.VERSION.SDK_INT
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.os.Build
 import androidx.navigation.fragment.findNavController
+import com.example.kinopoisk.base.BaseFragment
 import com.example.kinopoisk.databinding.FragmentFilmographyBinding
 import com.example.kinopoisk.domain.onItemClick
 import com.example.kinopoisk.entity.Movie
 import com.google.android.material.chip.Chip
 
-class FilmographyFragment : Fragment() {
+class FilmographyFragment : BaseFragment<FragmentFilmographyBinding>(FragmentFilmographyBinding::inflate) {
 
-    private var _binding : FragmentFilmographyBinding? = null
-    private val  binding get() = _binding!!
-
-    private val filmographyAdapter = FilmographyAdapter {movie ->
-        onItemClick(movie,this)
-    }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentFilmographyBinding.inflate(inflater, container, false)
-        return binding.root
+    private val filmographyAdapter = FilmographyAdapter { movie ->
+        onItemClick(movie, this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onBindView() {
+        super.onBindView()
         setupUIListeners()
 
         val actorName = arguments?.getString("actorName")
         binding.actorName.text = actorName
 
-        val listFilms = when{
-            SDK_INT >= 33 -> arguments?.getParcelableArrayList("filmography", Movie::class.java)
+        val listFilms = when {
+            Build.VERSION.SDK_INT >= 33 -> arguments?.getParcelableArrayList("filmography", Movie::class.java)
             else -> @Suppress("DEPRECATION") arguments?.getParcelableArrayList("filmography")
         }
 
@@ -61,11 +46,11 @@ class FilmographyFragment : Fragment() {
             it.professionKey == "PRODUCER"
         }
 
-        if(
+        if (
             listFilms?.get(0)?.professionKey == "ACTOR" ||
             listFilms?.get(0)?.professionKey == "HERSELF" ||
             listFilms?.get(0)?.professionKey == "HIMSELF"
-        ){
+        ) {
 
             binding.chip1.isChecked = true
             binding.rvFilmography.adapter = filmographyAdapter
@@ -75,22 +60,22 @@ class FilmographyFragment : Fragment() {
             binding.chip1.setOnClickListener {
                 binding.rvFilmography.adapter = filmographyAdapter
                 filmographyAdapter.submitList(actor)
-                clearChipCheck(binding.chip2,binding.chip3)
+                clearChipCheck(binding.chip2, binding.chip3)
                 enabledChip1()
             }
             binding.chip2.setOnClickListener {
                 binding.rvFilmography.adapter = filmographyAdapter
                 filmographyAdapter.submitList(dubbing)
-                clearChipCheck(binding.chip1,binding.chip3)
+                clearChipCheck(binding.chip1, binding.chip3)
                 enabledChip2()
             }
             binding.chip3.setOnClickListener {
                 binding.rvFilmography.adapter = filmographyAdapter
                 filmographyAdapter.submitList(himself)
-                clearChipCheck(binding.chip1,binding.chip2)
+                clearChipCheck(binding.chip1, binding.chip2)
                 enabledChip3()
             }
-        }else{
+        } else {
             binding.chip1.text = "Режиссер"
             binding.chip2.text = "Сценарист"
             binding.chip3.text = "Продюсер"
@@ -103,39 +88,43 @@ class FilmographyFragment : Fragment() {
             binding.chip1.setOnClickListener {
                 binding.rvFilmography.adapter = filmographyAdapter
                 filmographyAdapter.submitList(director)
-                clearChipCheck(binding.chip2,binding.chip3)
+                clearChipCheck(binding.chip2, binding.chip3)
                 enabledChip1()
             }
             binding.chip2.setOnClickListener {
                 binding.rvFilmography.adapter = filmographyAdapter
                 filmographyAdapter.submitList(writer)
-                clearChipCheck(binding.chip1,binding.chip3)
+                clearChipCheck(binding.chip1, binding.chip3)
                 enabledChip2()
             }
             binding.chip3.setOnClickListener {
                 binding.rvFilmography.adapter = filmographyAdapter
                 filmographyAdapter.submitList(producer)
-                clearChipCheck(binding.chip1,binding.chip2)
+                clearChipCheck(binding.chip1, binding.chip2)
                 enabledChip3()
             }
         }
     }
-    private fun enabledChip3(){
+
+    private fun enabledChip3() {
         binding.chip3.isEnabled = false
         binding.chip1.isEnabled = true
         binding.chip3.isEnabled = true
     }
-    private fun enabledChip2(){
+
+    private fun enabledChip2() {
         binding.chip2.isEnabled = false
         binding.chip1.isEnabled = true
         binding.chip3.isEnabled = true
     }
-    private fun enabledChip1(){
+
+    private fun enabledChip1() {
         binding.chip1.isEnabled = false
         binding.chip2.isEnabled = true
         binding.chip3.isEnabled = true
     }
-    private fun clearChipCheck(chip1 : Chip,chip2 : Chip) {
+
+    private fun clearChipCheck(chip1: Chip, chip2: Chip) {
         chip1.isChecked = false
         chip2.isChecked = false
     }
@@ -145,10 +134,4 @@ class FilmographyFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

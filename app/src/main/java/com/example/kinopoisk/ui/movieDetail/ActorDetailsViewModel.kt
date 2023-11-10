@@ -4,14 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.domain.MovieListRepository
-import com.example.kinopoisk.domain.RetrofitClient
 import com.example.kinopoisk.entity.Movie
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ActorDetailsViewModel : ViewModel() {
-
-    private val repository = MovieListRepository(RetrofitClient.api)
+@HiltViewModel
+class ActorDetailsViewModel @Inject constructor(private val repository: MovieListRepository) : ViewModel() {
 
     private val _actorInfo = MutableStateFlow<PersonDetailsDto?>(null)
     val actorInfo = _actorInfo

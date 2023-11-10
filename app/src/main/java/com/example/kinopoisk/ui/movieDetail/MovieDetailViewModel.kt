@@ -4,18 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.domain.MovieListRepository
-import com.example.kinopoisk.domain.RetrofitClient
 import com.example.kinopoisk.entity.Movie
-import com.example.kinopoisk.entity.SimilarsItem
 import com.example.kinopoisk.entity.StaffItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.lang.Exception
+import javax.inject.Inject
 
-class MovieDetailViewModel : ViewModel() {
-
-    private val repository = MovieListRepository(RetrofitClient.api)
+@HiltViewModel
+class MovieDetailViewModel @Inject constructor(private val repository: MovieListRepository) : ViewModel() {
 
     private val _movieDetail = MutableStateFlow<Movie?>(null)
     val movieDetail = _movieDetail.asStateFlow()

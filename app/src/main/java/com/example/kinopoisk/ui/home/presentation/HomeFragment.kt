@@ -1,69 +1,34 @@
 package com.example.kinopoisk.ui.home.presentation
 
-import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import com.example.kinopoisk.R
-import com.example.kinopoisk.domain.MovieListRepository
+import com.example.kinopoisk.base.BaseFragment
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentHomeBinding
-import com.example.kinopoisk.domain.RetrofitClient
-import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.ui.home.adapter.VerticalAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 
-class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+@AndroidEntryPoint
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val verticalAdapter = VerticalAdapter(this)
-    private lateinit var homeViewModel: HomeViewModel
 
-    private val repository: MovieListRepository by lazy {
-        MovieListRepository(RetrofitClient.api)
-    }
+    private val homeViewModel: HomeViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val factory = HomeViewModel.HomeViewModelFactory(
-            repository = repository
-        )
-
-        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onBindView() {
+        super.onBindView()
         binding.recyclerNewMovies.adapter = verticalAdapter
-
         setUpMovies()
         stateMovies()
-
-
     }
 
     private fun setUpMovies() {
@@ -78,7 +43,7 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 homeViewModel.state.collect {
-                    when (it) {
+                    when(it) {
                         State.Error -> {
                             binding.errorText.text = "No internet connection"
                             binding.loaderImage.visibility = View.GONE
@@ -108,10 +73,4 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

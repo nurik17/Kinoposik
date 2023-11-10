@@ -1,41 +1,29 @@
 package com.example.kinopoisk.ui.search
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kinopoisk.R
+import com.example.kinopoisk.base.BaseFragment
 import com.example.kinopoisk.databinding.FragmentSearchBinding
 import com.example.kinopoisk.ui.search.adapter.SearchAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class SearchFragment : Fragment() {
-
-    private var _binding : FragmentSearchBinding? = null
-    private val  binding get() = _binding!!
+@AndroidEntryPoint
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
 
     private val viewModel: SearchViewModel by activityViewModels()
 
     private val searchAdapter by lazy {
         SearchAdapter()
     }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onBindView() {
+        super.onBindView()
         setUpRecyclerView()
         searchFunction()
 
@@ -59,9 +47,5 @@ class SearchFragment : Fragment() {
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
             }
             .launchIn(viewLifecycleOwner.lifecycleScope)
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

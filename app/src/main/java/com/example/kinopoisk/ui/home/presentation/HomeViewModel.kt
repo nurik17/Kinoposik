@@ -1,18 +1,18 @@
 package com.example.kinopoisk.ui.home.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.data.State
+import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.ui.home.fullMovie.paging.Popular100PagingSource
 import com.example.kinopoisk.ui.home.fullMovie.paging.ReleasePagingSource
 import com.example.kinopoisk.ui.home.fullMovie.paging.Top250PagingSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,9 +20,10 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import javax.inject.Inject
 
-
-class HomeViewModel(private val repository: MovieListRepository) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val repository: MovieListRepository) : ViewModel() {
 
     private val currentDate = Date()
     private val monthFormat = SimpleDateFormat("MMMM", Locale.US)
@@ -99,13 +100,5 @@ class HomeViewModel(private val repository: MovieListRepository) : ViewModel() {
                  _state.value = State.Error
              }
          }
-    }
-
-
-    @Suppress("UNCHECKED_CAST")
-    class HomeViewModelFactory(private val repository: MovieListRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeViewModel(repository) as T
-        }
     }
 }

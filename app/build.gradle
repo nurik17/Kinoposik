@@ -1,9 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
+    id 'com.google.dagger.hilt.android'
 }
+
 
 android {
     namespace 'com.example.kinopoisk'
@@ -52,8 +55,8 @@ dependencies {
     //indicator
     implementation 'com.tbuonomo:dotsindicator:4.3'
     //navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.7.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.5'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -77,9 +80,13 @@ dependencies {
     //pagination
     implementation "androidx.paging:paging-runtime:3.2.1"
 
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 }
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        languageVersion = "1.9"
-    }
+kapt {
+    correctErrorTypes true
+}
+hilt {
+    enableAggregatingTask = true
 }

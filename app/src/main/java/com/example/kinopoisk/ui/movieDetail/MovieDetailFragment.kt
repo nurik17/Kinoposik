@@ -1,40 +1,32 @@
 package com.example.kinopoisk.ui.movieDetail
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.kinopoisk.R
+import com.example.kinopoisk.base.BaseFragment
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentMovieDetailBinding
 import com.example.kinopoisk.domain.onActorClick
 import com.example.kinopoisk.domain.onItemClick
-import com.example.kinopoisk.domain.onPictureClick
-import com.example.kinopoisk.entity.StaffItem
-import com.example.kinopoisk.ui.gallery.PicturesAdapter
 import com.example.kinopoisk.ui.home.adapter.CastAdapter
 import com.example.kinopoisk.ui.home.adapter.MovieListAdapter
 import com.example.kinopoisk.ui.home.adapter.StaffAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-class MovieDetailFragment : Fragment() {
+@AndroidEntryPoint
+class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
 
-    private var _binding: FragmentMovieDetailBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var viewModel: MovieDetailViewModel
+    private val viewModel: MovieDetailViewModel by viewModels()
 
     private val castAdapter = CastAdapter {item,view ->
         onActorClick(item,view,this)
@@ -43,20 +35,9 @@ class MovieDetailFragment : Fragment() {
         onActorClick(item,view,this)
     }
     private lateinit var similarAdapter: MovieListAdapter
-    private lateinit var imageAdapter: PicturesAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[MovieDetailViewModel::class.java]
-        return binding.root
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onBindView() {
+        super.onBindView()
         val filmId = arguments?.getInt("filmId")
         val kinopoiskId = arguments?.getInt("kinopoiskId")
 
@@ -68,34 +49,6 @@ class MovieDetailFragment : Fragment() {
         observeFilmGeneralInfo()
         setUpAdapterInfo()
         observeState()
-   /*     if (kinopoiskId != 0) {
-            val imageViewModel = ViewModelProvider(
-                this, GalleryViewModelFactory(kinopoiskId!!)
-            )[GalleryViewModel::class.java]
-
-            imageViewModel.get20Images("STILL")
-
-            imageViewModel.images20.onEach {
-                imageAdapter.submitData(PagingData.from(it))
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-
-            kinopoiskId.let { viewModel.getAllDetails(it) }
-
-        } else {
-            val imageViewModel = ViewModelProvider(
-                this, GalleryViewModelFactory(kinopoiskId)
-            )[GalleryViewModel::class.java]
-            imageViewModel.get20Images("STILL")
-
-            imageViewModel.images20.onEach {
-                imageAdapter.submitData(PagingData.from(it))
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-
-            filmId?.let { viewModel.getAllDetails(it) }
-        }
-*/
-
-
     }
 
     private fun setUpRecyclerViews() {
@@ -208,11 +161,6 @@ class MovieDetailFragment : Fragment() {
         val regex = Regex("\\d+")
         val matchResult = regex.find(ratingAgeLimits ?: "")
         return matchResult?.value ?: ""
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
 

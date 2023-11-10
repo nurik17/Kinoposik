@@ -3,61 +3,39 @@ package com.example.kinopoisk.ui.movieDetail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.kinopoisk.R
+import com.example.kinopoisk.base.BaseFragment
 import com.example.kinopoisk.databinding.FragmentActorDetailBinding
 import com.example.kinopoisk.domain.onItemClick
 import com.example.kinopoisk.ui.home.adapter.MovieListAdapter
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-class ActorDetailFragment : Fragment() {
+@AndroidEntryPoint
+class ActorDetailFragment : BaseFragment<FragmentActorDetailBinding>(FragmentActorDetailBinding::inflate){
 
-    private var _binding : FragmentActorDetailBinding? = null
-    private val  binding get() = _binding!!
-
-    private lateinit var viewModel: ActorDetailsViewModel
-
+    private val viewModel: ActorDetailsViewModel by viewModels()
     private var adapter = MovieListAdapter{item->
         onItemClick(item,this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentActorDetailBinding.inflate(inflater,container,false)
-        viewModel = ViewModelProvider(this)[ActorDetailsViewModel::class.java]
-
-        return binding.root
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onBindView() {
+        super.onBindView()
         setupUIListeners()
         infoSetUp()
         listOfFilms()
 
         val id = arguments?.getInt("personId")
         viewModel.getPersonInfo(id!!)
-
         binding.recyclerActor.adapter = adapter
-
-
     }
     private fun listOfFilms(){
 
@@ -102,8 +80,4 @@ class ActorDetailFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

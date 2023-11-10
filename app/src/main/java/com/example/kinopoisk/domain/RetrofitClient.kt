@@ -23,7 +23,7 @@ object RetrofitClient {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    retrofit.create(MovieApi::class.java)
+        retrofit.create(MovieApi::class.java)
 
     }
 }

@@ -2,19 +2,17 @@ package com.example.kinopoisk.ui.home.fullMovie
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.kinopoisk.domain.MovieListRepository
 import com.example.kinopoisk.data.State
 import com.example.kinopoisk.databinding.FragmentFullMovieBinding
-import com.example.kinopoisk.domain.RetrofitClient
 import com.example.kinopoisk.domain.onItemClick
 import com.example.kinopoisk.ui.home.adapter.MovieListAdapter
 import com.example.kinopoisk.ui.home.presentation.HomeViewModel
@@ -22,12 +20,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
+
 class FullMovieFragment : Fragment(){
 
     private var _binding: FragmentFullMovieBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel : HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
 
     private val adapter = MovieListAdapter {movie ->
         onItemClick(movie,this)
@@ -36,21 +35,12 @@ class FullMovieFragment : Fragment(){
     private val pagedAdapter = MovieFullAdapter{movie ->
         onItemClick(movie,this)
     }
-    private val repository: MovieListRepository by lazy {
-        MovieListRepository(RetrofitClient.api)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFullMovieBinding.inflate(inflater,container,false)
-
-        val factory = HomeViewModel.HomeViewModelFactory(
-            repository = repository
-        )
-        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-
         return _binding!!.root
     }
 
@@ -58,16 +48,10 @@ class FullMovieFragment : Fragment(){
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getTypeOfMovie()
         stateType()
-
         backButton()
-
-
     }
-
-
     private fun backButton(){
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()

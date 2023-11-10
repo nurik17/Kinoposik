@@ -1,15 +1,14 @@
 package com.example.kinopoisk.domain
 
 import com.example.kinopoisk.data.GenresCountriesDto
-import com.example.kinopoisk.data.MovieSearchDto
 import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.entity.Movie
 import com.example.kinopoisk.entity.PicturesItem
-import com.example.kinopoisk.entity.SimilarsItem
 import com.example.kinopoisk.entity.StaffItem
-import retrofit2.http.Query
+import javax.inject.Inject
 
-class MovieListRepository(private val api: MovieApi) {
+
+class MovieListRepository @Inject constructor(private val api: MovieApi) {
 
     suspend fun getPremieres(month: String, year: String, page: Int?): List<Movie> {
         return api.getPremieres(month, year, page).items

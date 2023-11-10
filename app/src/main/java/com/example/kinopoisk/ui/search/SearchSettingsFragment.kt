@@ -1,40 +1,27 @@
 package com.example.kinopoisk.ui.search
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.kinopoisk.R
+import com.example.kinopoisk.base.BaseFragment
 import com.example.kinopoisk.data.FILM_TYPE
 import com.example.kinopoisk.data.SORTING_PARAMS
 import com.example.kinopoisk.databinding.FragmentSearchSettingsBinding
 import com.google.android.material.slider.RangeSlider
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-class SearchSettingsFragment : Fragment() {
-    private var _binding: FragmentSearchSettingsBinding? = null
-    private val binding get() = _binding!!
+@AndroidEntryPoint
+class SearchSettingsFragment : BaseFragment<FragmentSearchSettingsBinding>(FragmentSearchSettingsBinding::inflate) {
 
     private val viewModel: SearchViewModel by activityViewModels()
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSearchSettingsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+   override fun onBindView() {
+        super.onBindView()
         navigationBack()
-
         setUpTextViews() // установка значений textView
         setFilterFilmType()
         setRangeSlider()
@@ -151,7 +138,7 @@ class SearchSettingsFragment : Fragment() {
     }
 
     private fun setFilterSorting(){
-        binding.buttonGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.buttonGroup2.addOnButtonCheckedListener { group, checkedId, isChecked ->
             when (checkedId) {
                 binding.yearFilterBtn.id -> {
                     viewModel.updateFiltersFull(
@@ -179,16 +166,9 @@ class SearchSettingsFragment : Fragment() {
         }
     }
 
-  /*  private fun onClickFilterCountryGenreChoose() {
-        binding.searchSettingsCountryTv.setOnClickListener {
-            val action = FragmentSearchSettingsDirections
-                .actionFragmentSearchSettingsToFragmentSearchFilters(FragmentSearchFilters.KEY_COUNTRY)
-            findNavController().navigate(action)
-        }
-        binding.searchSettingsGenreTv.setOnClickListener {
-            val action = FragmentSearchSettingsDirections
-                .actionFragmentSearchSettingsToFragmentSearchFilters(FragmentSearchFilters.KEY_GENRE)
-            findNavController().navigate(action)
+    /*private fun onClickFilterCountryGenreChoose(){
+        binding.tvCountryTitle.setOnClickListener {
+            val action =
         }
     }*/
 
@@ -198,8 +178,4 @@ class SearchSettingsFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

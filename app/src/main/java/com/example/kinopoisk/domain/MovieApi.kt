@@ -7,16 +7,15 @@ import com.example.kinopoisk.data.PagedMoviesDto
 import com.example.kinopoisk.data.PersonDetailsDto
 import com.example.kinopoisk.data.PicturesDto
 import com.example.kinopoisk.data.ReleaseListDto
-import com.example.kinopoisk.data.SimilarsDto
 import com.example.kinopoisk.data.StaffDto
 import com.example.kinopoisk.entity.Movie
-import com.example.kinopoisk.entity.SimilarFilms
 import com.example.kinopoisk.utils.Constant.API_KEY
+import dagger.Component
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
-
+import javax.inject.Singleton
 
 interface MovieApi {
 
